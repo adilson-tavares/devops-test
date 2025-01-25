@@ -1,0 +1,21 @@
+# Arquivos de controle de versão
+.git/
+.gitignore
+
+# Configurações de IDE/Editor
+.idea/
+.vscode/
+
+# Ignora arquivos temporários
+/logs/
+*.log
+/tmp/
+*.tmp
+
+# Ignora variaveis locais e credenciais
+.env
+.env.local
+.env.*.local
+
+# Ignora docker-compose
+docker-compose.yaml
