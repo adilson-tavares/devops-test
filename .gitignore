@@ -1,0 +1,21 @@
+# Configurações de IDE/Editor
+.idea/
+.vscode/
+
+# Logs e relatórios de erros
+/logs/
+*.log
+error_log
+
+# Arquivos temporários
+/tmp/
+*.tmp
+
+# Arquivos de cache
+/cache/
+*.cache
+
+# Configurações locais e credenciais sensíveis
+.env
+.env.local
+.env.*.local
