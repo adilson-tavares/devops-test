@@ -33,6 +33,25 @@ jobs:
       - name: Obtem codigo do projeto
         uses: actions/checkout@v4
 
+      - name: configura Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          working-directory: terraform
+          terraform_wrapper: false
+
+      - name: Executa Arquivos Terraform
+        run: terraform init
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color
+        continue-on-error: true
+
+      - run: echo ${{ steps.plan.outputs.stdout }}
+      - run: echo ${{ steps.plan.outputs.stderr }}
+      - run: echo ${{ steps.plan.outputs.exitcode }}
+
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
