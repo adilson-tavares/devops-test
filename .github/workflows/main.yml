@@ -73,7 +73,7 @@ jobs:
 
       - name: Describe EC2 e Get no Instace_id
         run: |
-          INSTANCE_ID="$(aws ec2 describe-instances --filters "Name=tag:Name,Values=server-nginx"
+          INSTANCE_ID="$(aws ec2 describe-instances --filters "Name=tag:Name,Values=server-nginx" \
             --query "Reservations[0].Instances[0].{Instance:InstanceId}" \
             --output json)"
           echo "INSTANCE_ID=${INSTANCE_ID}" >> $GITHUB_ENV
