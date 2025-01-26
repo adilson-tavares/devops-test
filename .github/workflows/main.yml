@@ -26,9 +26,12 @@ jobs:
           tags: | 
             tavarescruz/nginx:latest
             tavarescruz/nginx:v${{ github.run_number }}
-  cd:
+  terraform:
     runs-on: ubuntu-latest
     needs: [ci]
+    defaults:
+      run:
+        working-directory: terraform
     steps:
       - name: Obtem codigo do projeto
         uses: actions/checkout@v4
@@ -36,7 +39,6 @@ jobs:
       - name: configura Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          working-directory: terraform
           terraform_wrapper: false
 
       - name: Executa Arquivos Terraform
@@ -51,6 +53,18 @@ jobs:
       - run: echo ${{ steps.plan.outputs.stderr }}
       - run: echo ${{ steps.plan.outputs.exitcode }}
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+  cd:
+    runs-on: ubuntu-latest
+    needs: [ci]
+    steps:
+      - name: Obtem codigo do projeto
+        uses: actions/checkout@v4
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -58,4 +72,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
+
+
 
