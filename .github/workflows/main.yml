@@ -85,7 +85,7 @@ jobs:
             --document-name "AWS-RunShellScript" \
             --comment "Instalando Docker" \
             --parameters commands="curl -fsSL https://get.docker.com | bash && sudo usermod -aG docker ubuntu && sudo systemctl enable docker && sudo systemctl start docker" \
-            -output text
+            --output text
 
 
 
