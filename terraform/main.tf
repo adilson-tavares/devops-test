@@ -5,9 +5,6 @@ module "ec2_instance" {
 
   instance_type          = "t2.micro"
   monitoring             = true
-  vpc_security_group_ids = ["sg-12345678"]
-  subnet_id              = "subnet-eddcdzz4"
-
   tags = {
     Terraform   = "true"
     Environment = "dev"
