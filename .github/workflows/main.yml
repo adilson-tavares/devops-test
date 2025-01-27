@@ -35,7 +35,7 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      RUN_TERRAFORM: true
+      RUN_TERRAFORM: false
     steps:
       - name: Obtem codigo do projeto
         uses: actions/checkout@v4
@@ -89,9 +89,18 @@ jobs:
         run: |
           aws ssm send-command \
             --document-name "AWS-RunShellScript" \
+            --comment "Instalando Docker" \
             --parameters 'commands=["curl -fsSL https://get.docker.com -o get-docker.sh","sh get-docker.sh","groupadd docker","usermod -aG docker ubuntu","sudo systemctl enable docker","sudo systemctl restart docker"]' \
             --targets "Key=instanceids,Values=$INSTANCE_ID" \
-            --comment "Instalando Docker" \
+
+      - name: Deploy Docker via Session Manager
+        run: |
+          aws ssm send-command \
+            --document-name "AWS-RunShellScript" \
+            --comment "Deploy Docker Image" \
+            --parameters 'commands=["sudo docker pull tavarescruz/nginx:v${{ github.run_number }}","sudo docker run -it --rm -d -p 80:80 --name nginx-web tavarescruz/nginx:v${{ github.run_number }}"]' \
+            --targets "Key=instanceids,Values=$INSTANCE_ID"
+            
 
 
 
