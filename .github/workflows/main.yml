@@ -35,7 +35,7 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      RUN_TERRAFORM: true
+      RUN_TERRAFORM: false
     steps:
       - name: Obtem codigo do projeto
         uses: actions/checkout@v4
@@ -85,15 +85,13 @@ jobs:
             --output json)"
           echo 'INSTANCE_ID='$INSTANCE_ID >> $GITHUB_ENV
 
-      - name: Install Docker com Script via SSM
+      - name: Echo comand ssm
         run: |
           aws ssm send-command \
-            --instance-ids $INSTANCE_ID \
             --document-name "AWS-RunShellScript" \
-            --comment "Instalando Docker" \
-            --parameters commands=["curl -fsSL https://get.docker.com -o get-docker.sh","sudo sh get-docker.sh","sudo usermod -aG docker ubuntu","sudo systemctl enable docker","sudo systemctl start docker"] \
-            --region us-east-1 \
-            --output text
+            --parameters 'commands=["echo HelloWorld"]' \
+            --targets "Key=instanceids,Values=$INSTANCE_ID" \
+            --comment "echo HelloWorld"
 
 
 
