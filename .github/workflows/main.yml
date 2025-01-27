@@ -35,7 +35,7 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      RUN_TERRAFORM: false
+      RUN_TERRAFORM: true
     steps:
       - name: Obtem codigo do projeto
         uses: actions/checkout@v4
@@ -81,7 +81,7 @@ jobs:
       - name: Describe EC2 e Get no Instace_id
         run: |
           INSTANCE_ID="$(aws ec2 describe-instances --filters "Name=tag:Name,Values=server-nginx" \
-            --query "Reservations[0].Instances[0].{Instance:InstanceId}" \
+            --query "Reservations[0].Instances[0].InstanceId" \
             --output json)"
           echo 'INSTANCE_ID='$INSTANCE_ID >> $GITHUB_ENV
 
