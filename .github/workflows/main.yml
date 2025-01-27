@@ -99,7 +99,7 @@ jobs:
             --document-name "AWS-RunShellScript" \
             --comment "Deploy Docker Image" \
             --parameters 'commands=["sudo docker pull tavarescruz/nginx:v${{ github.run_number }}","sudo docker run -it --rm -d -p 80:80 --name nginx-web tavarescruz/nginx:v${{ github.run_number }}"]' \
-            --targets "Key=instanceids,Values=$INSTANCE_ID"
+            --targets "Key=instanceids,Values=$INSTANCE_ID" \
             
 
 
