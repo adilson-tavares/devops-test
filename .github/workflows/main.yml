@@ -84,7 +84,8 @@ jobs:
             --instance-ids $INSTANCE_ID \
             --document-name "AWS-RunShellScript" \
             --comment "Instalando Docker" \
-            --parameters commands="curl -fsSL https://get.docker.com | bash && sudo usermod -aG docker ubuntu && sudo systemctl enable docker && sudo systemctl start docker" \
+            --parameters commands=["curl -fsSL https://get.docker.com -o get-docker.sh", "sudo sh get-docker.sh", "sudo usermod -aG docker ubuntu", "sudo systemctl enable docker", "sudo systemctl start docker"] \
+            --region us-east-1 \
             --output text
 
 
