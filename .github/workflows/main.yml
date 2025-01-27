@@ -85,11 +85,11 @@ jobs:
             --output json)"
           echo 'INSTANCE_ID='$INSTANCE_ID >> $GITHUB_ENV
 
-      - name: Instala Docker via SEssion Manager
+      - name: Instala Docker via Session Manager
         run: |
           aws ssm send-command \
             --document-name "AWS-RunShellScript" \
-            --parameters 'commands=["curl -fsSL https://get.docker.com -o get-docker.sh","sudo sh get-docker.sh","sudo groupadd docker","sudo usermod -aG docker $USER","sudo systemctl enable docker","sudo systemctl restart docker"]' \
+            --parameters 'commands=["curl -fsSL https://get.docker.com -o get-docker.sh","sh get-docker.sh","groupadd docker","usermod -aG docker ubuntu","sudo systemctl enable docker","sudo systemctl restart docker"]' \
             --targets "Key=instanceids,Values=$INSTANCE_ID" \
             --comment "Instalando Docker" \
 
