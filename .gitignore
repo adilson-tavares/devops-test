@@ -2,6 +2,12 @@
 .idea/
 .vscode/
 
+# Local ignora diretorio .terraform 
+terraform/.terraform/*
+
+# Ignora .lock, criados por execucoes locais
+.terraform.lock.hcl
+
 # Logs e relatórios de erros
 /logs/
 *.log
