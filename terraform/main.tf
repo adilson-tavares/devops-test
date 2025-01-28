@@ -16,6 +16,11 @@ module "ec2_instance" {
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
   }
 
+  enable_volume_tags = true
+  volume_tags = {
+    Snapshot = "true"
+  }
+
   tags = {
     Name = "server-nginx"
     Terraform   = "true"
