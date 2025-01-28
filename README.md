@@ -11,6 +11,14 @@ Este projeto foi desenvolvido para automatizar o processo de criação e deployy
 4. Instalar e configurar qualquer software que você recomendaria em uma configuração de servidor padrão sob as perspectivas de segurança, desempenho, backup e monitorização.
 5. Instalar e configurar o nginx para servir uma página web HTML estática.
 
+### Infraestrtura na Cloud AWS
+
+![DevOps](./app/assets/image/aws-diagram.png)
+
+### Pipeline do gitHub Actions para Cloud
+
+![DevOps](./app/assets/image/pipeline.png)
+
 ## Requisitos 
 
 Para executar este projeto localmente, você precisa instalar na sua máquina as seguinte ferramentas:
