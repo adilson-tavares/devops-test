@@ -36,10 +36,20 @@ Para [Linux](https://www.docker.com/products/docker-desktop), siga documentaçã
 2 - Fazendo o download da imagem no link abaixo:
 [IMAGE NGINX](https://hub.docker.com/repository/docker/tavarescruz/nginx/tags)
 
-- Comando para baixar a imagem: 
+- Ou faça o com o comando **docker pull** para baixar a imagem: 
+
 ```bash
 docker pull tavarescruz/nginx
 ```
+- Para rodar o container faça com o **docker run**:
+
+```bash
+docker run -it --rm -d -p 8081:80 --name nginx-web  tavarescruz/nginx
+
+```
+
+- **Acessando a Aplicação**:
+   Acesse a url: [localhost:8181](http://localhost:8081)
 
 ### Build e Execução do Projeto
  
@@ -53,11 +63,12 @@ Vá até o seu repositorio onde fez clone, acesse o diretorio do projeto e siga 
 
 **Criando a imagem**
 
-- Utilize o comando abaixo, pra criar uma iamgem docker:
+- Utilize o comando abaixo, pra criar uma imagem docker:
 ```bash
   docker build -t <nome-imagem> -f Dockerfile . 
 
 ```
+**Rode container com imagem que você gerou**
 
 - Execute o container com a imagem criada anteriormente:
 
@@ -66,15 +77,6 @@ Vá até o seu repositorio onde fez clone, acesse o diretorio do projeto e siga 
 
 ```
 
-**Acesse a url**: [localhost:8181](http://localhost:8181)
-
-#### Se você baixou a imagem, faça: 
-
-- Execute o Container com comando **docker run**:
-    ```bash
-    docker run -it --rm -d -p 8081:80 --name nginx-web  tavarescruz/nginx
-
-    ```
 - **Acessando a Aplicação**:
    Acesse a url: [localhost:8181](http://localhost:8181)
 
