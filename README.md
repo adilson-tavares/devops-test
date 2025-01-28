@@ -13,11 +13,11 @@ Este projeto foi desenvolvido para automatizar o processo de criação e deployy
 
 ### Infraestrtura na Cloud AWS
 
-![DevOps](./app/assets/image/aws-diagram.png)
+![AWS](./app/assets/image/aws-diagram.png)
 
 ### Pipeline do gitHub Actions para Cloud
 
-![DevOps](./app/assets/image/pipeline.png)
+![Pipeline](./app/assets/image/pipeline.png)
 
 ## Requisitos 
 
